@@ -1,26 +1,26 @@
-import css from './Statistics.module.css';
 import PropTypes from 'prop-types';
-function getRandomHexColor() {
-  return `#${Math.floor(Math.random() * 16777215).toString(16)}`;
-}
+import {
+  StatisticsBox,
+  Title,
+  StatList,
+  Item,
+  Label,
+  Percentage,
+} from './Statistics.styled.jsx';
 
 export default function Statistics({ title, stats }) {
   return (
-    <section className={css.statistics}>
-      {title && <h2 className={css.title}>{title}</h2>}
-      <ul className={css.statList}>
+    <StatisticsBox>
+      {title && <Title>{title}</Title>}
+      <StatList>
         {stats.map(({ id, label, percentage }) => (
-          <li
-            className={css.item}
-            key={id}
-            style={{ backgroundColor: getRandomHexColor() }}
-          >
-            <span className={css.label}>{label}</span>{' '}
-            <span className={css.percentage}>{percentage}</span>
-          </li>
+          <Item key={id}>
+            <Label>{label}</Label>
+            <Percentage>{percentage}</Percentage>
+          </Item>
         ))}
-      </ul>
-    </section>
+      </StatList>
+    </StatisticsBox>
   );
 }
 
